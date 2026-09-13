@@ -1,0 +1,50 @@
+# =============================================================================
+# Terraform
+# =============================================================================
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files — NEVER commit state to Git
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Override files (used for local overrides)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI configuration files
+.terraformrc
+terraform.rc
+
+# Terraform lock file is safe to commit (tracks provider versions)
+# .terraform.lock.hcl  <-- keep this commented; we DO want to commit it
+
+# =============================================================================
+# Sensitive variable files — NEVER commit actual tfvars with secrets
+# =============================================================================
+terraform.tfvars
+*.auto.tfvars
+
+# Keep the example files (no secrets inside)
+!terraform.tfvars.example
+
+# =============================================================================
+# OS files
+# =============================================================================
+.DS_Store
+Thumbs.db
+
+# =============================================================================
+# Editor / IDE
+# =============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
