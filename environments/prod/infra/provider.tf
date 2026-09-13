@@ -1,0 +1,24 @@
+provider "aws" {
+  region = var.aws_region
+
+  default_tags {
+    tags = local.common_tags
+  }
+}
+
+locals {
+  name_prefix = "${var.project_name}-${var.environment}"
+
+  common_tags = {
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "terraform"
+  }
+
+  azs = slice(data.aws_availability_zones.available.names, 0, 2)
+}
+
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
