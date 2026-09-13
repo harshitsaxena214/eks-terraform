@@ -1,0 +1,18 @@
+# =============================================================================
+# environments/dev/kubernetes/terraform.tfvars.example
+#
+# Copy to terraform.tfvars. No secrets in this layer.
+#
+# IMPORTANT: set cluster_name to the output from:
+#   cd ../infra && terraform output eks_cluster_name
+# =============================================================================
+
+aws_region   = "us-east-1"
+project_name = "eks-three-stage"
+environment  = "dev"
+
+# Paste the EKS cluster name from: cd ../infra && terraform output eks_cluster_name
+cluster_name = "eks-three-stage-dev-cluster"
+
+# Application
+app_replica_count = 2

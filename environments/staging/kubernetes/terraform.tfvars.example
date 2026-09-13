@@ -1,0 +1,12 @@
+# =============================================================================
+# environments/staging/kubernetes/terraform.tfvars.example
+# =============================================================================
+
+aws_region   = "us-east-1"
+project_name = "eks-three-stage"
+environment  = "staging"
+
+# Paste from: cd ../infra && terraform output eks_cluster_name
+cluster_name = "eks-three-stage-staging-cluster"
+
+app_replica_count = 2
