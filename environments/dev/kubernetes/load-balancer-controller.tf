@@ -6,36 +6,30 @@ resource "helm_release" "lbc" {
   version    = "1.7.2"
   wait       = true
 
-  set {
-    name  = "clusterName"
-    value = var.cluster_name
-  }
-
-  # Helm creates the ServiceAccount and applies the IRSA annotation
-  set {
-    name  = "serviceAccount.create"
-    value = "true"
-  }
-
-  set {
-    name  = "serviceAccount.name"
-    value = "aws-load-balancer-controller"
-  }
-
-  # IRSA annotation: links the ServiceAccount to the IAM role
-  set {
-    name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
-    value = data.aws_iam_role.lbc.arn
-  }
-
-  set {
-    name  = "region"
-    value = var.aws_region
-  }
-
-  set {
-    name  = "vpcId"
-    value = data.aws_eks_cluster.this.vpc_config[0].vpc_id
-  }
+  set = [
+    {
+      name  = "clusterName"
+      value = var.cluster_name
+    },
+    {
+      name  = "serviceAccount.create"
+      value = "true"
+    },
+    {
+      name  = "serviceAccount.name"
+      value = "aws-load-balancer-controller"
+    },
+    {
+      name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+      value = data.aws_iam_role.lbc.arn
+    },
+    {
+      name  = "region"
+      value = var.aws_region
+    },
+    {
+      name  = "vpcId"
+      value = data.aws_eks_cluster.this.vpc_config[0].vpc_id
+    }
+  ]
 }
-
